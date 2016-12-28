@@ -33,3 +33,8 @@ you can run the web application on web module it will initialize one H2 database
 you can run the batch with running as java job="initializeDataJob", it will print the data from antoher h2 database
 
 you can run app-skeleton-frontend, with npm install and npm start in the app-skeleton-frontend folder
+
+## Packaging
+
+Build and war generation is not fully tested but maven install should generate a war with frontend and webServices in the same war ready to deploy
+
