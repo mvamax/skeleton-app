@@ -1,14 +1,25 @@
-## Synopsis
-
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
-
-## Code Example
-
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
-
 ## Motivation
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+Multi module project maven with spring boot and react in frontend.
+* app-skeleton-core
+ Core of the project with JPA, and service to access business data
+
+* app-skeleton-external
+ Exposes service to simulate another business data in external datasource
+
+
+* app-skeleton-spring-helpers
+ Some class for spring boot configuration
+
+* app-skeleton-web
+ Webservices exposed
+
+* app-skeleton-fitnesse
+ Empty for the moment the puropose is to expose batch and point to fitnesse server 
+
+* app-skeleton-batch
+ Batch (included multi datasources core and external)
+
 
 ## Installation
 
