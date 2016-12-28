@@ -1,8 +1,8 @@
 package io.app;
 
 
-import io.app.core.config.Constants;
-import io.app.core.config.DefaultConfigurationUtil;
+import io.spring.helpers.configuration.Constants;
+import io.spring.helpers.configuration.DefaultConfigurationUtil;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

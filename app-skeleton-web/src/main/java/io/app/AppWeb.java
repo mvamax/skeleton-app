@@ -1,7 +1,7 @@
 package io.app;
 
-import io.app.core.config.Constants;
-import io.app.core.config.DefaultConfigurationUtil;
+import io.spring.helpers.configuration.Constants;
+import io.spring.helpers.configuration.DefaultConfigurationUtil;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -46,7 +46,7 @@ public class AppWeb extends SpringBootServletInitializer {
                 "Local: \t\thttp://localhost:{}\n\t" +
                 "External: \thttp://{}:{}\n----------------------------------------------------------",
             env.getProperty("spring.application.name"),
-            env.getProperty("server.port"),
+            env.getProperty("server.port")==null?"8080":env.getProperty("server.port"),
             InetAddress.getLocalHost().getHostAddress(),
             env.getProperty("server.port"));
 	}

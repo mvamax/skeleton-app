@@ -30,7 +30,7 @@ public class ExternalDatabaseConfiguration  {
 	}
 	
 	@Bean
-	public DataSourceInitializer elireDataSourceInitializer(
+	public DataSourceInitializer externalDataSourceInitializer(
 			@Qualifier("externalDatasource") DataSource externalDatasource,
 			@Qualifier("externalDatasourceProperties") BasicDatasourceProperties externalDatasourceProperties) {
 		return new DataSourceInitializer(externalDatasource,externalDatasourceProperties);

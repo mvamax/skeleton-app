@@ -15,27 +15,27 @@ import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-public class ElireDatabaseConfiguration{
+public class CoreDatabaseConfiguration{
 
 	@Bean
 	@Primary
-	@ConfigurationProperties("elire.datasource")
-	public BasicDatasourceProperties elireDatasourceProperties() {
+	@ConfigurationProperties("core.datasource")
+	public BasicDatasourceProperties coreDatasourceProperties() {
 		return new BasicDatasourceProperties();
 	}
 
 	@Bean
 	@Primary
-	@ConfigurationProperties("elire.datasource.hikari")
-	public DataSource elireDatasource(BasicDatasourceProperties elireDatasourceProperties) {
-		DataSource d = elireDatasourceProperties.initializeDataSourceBuilder().build();
+	@ConfigurationProperties("core.datasource.hikari")
+	public DataSource coreDatasource(BasicDatasourceProperties coreDatasourceProperties) {
+		DataSource d = coreDatasourceProperties.initializeDataSourceBuilder().build();
 		return d;
 	}
 	
 	@Bean
 	@Primary
-	public DataSourceInitializer elireDataSourceInitializer(DataSource elireDatasource, BasicDatasourceProperties elireDatasourceProperties) {
-		return new DataSourceInitializer(elireDatasource,elireDatasourceProperties);
+	public DataSourceInitializer coreDataSourceInitializer(DataSource coreDatasource, BasicDatasourceProperties coreDatasourceProperties) {
+		return new DataSourceInitializer(coreDatasource,coreDatasourceProperties);
 	}
 	
 

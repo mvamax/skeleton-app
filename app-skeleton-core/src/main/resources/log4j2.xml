@@ -24,7 +24,7 @@
 	</Appenders>
 	<Loggers>
 
-		<Logger name="fr.insee.elire" level="DEBUG" additivity="false">
+		<Logger name="io.app" level="DEBUG" additivity="false">
 			<AppenderRef ref="Console-Appender" />
 		</Logger>
 		<Root level="INFO">

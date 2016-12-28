@@ -1,4 +1,4 @@
-package io.app.core.config;
+package io.spring.helpers.configuration;
 
 
 public class Constants {

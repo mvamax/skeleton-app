@@ -135,6 +135,7 @@ public class DataSourceInitializer implements InitializingBean,		ApplicationList
 
 	private void runScripts(List<Resource> resources, String username,
 			String password) {
+		logger.info("run scripts of initialization");
 		if (resources.isEmpty()) {
 			return;
 		}
