@@ -1,0 +1,63 @@
+.accueil > .panel-heading h4  {
+  font-size: 14px;
+}
+
+.fonction > .panel-body {
+  padding: 0;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+    padding-top: 5px;
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 8px 0px 0px 10px;
+  pointer-events: none;
+  color: black;
+
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 20px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+
+.input-fonction {
+    height: 24px;
+    padding: 0px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+
+.input-fonction2 {
+  top:1px;
+}
+
+.input-fonction2 input {
+  height:33px;
+}
+
+.input-fonction2 .glyphicon {
+  top:0px;
+  height:33px;
+}
+
+.fonction .row {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding: 0px;
+}
+
+.fonction-title {
+      padding: 10px 10px;
+}

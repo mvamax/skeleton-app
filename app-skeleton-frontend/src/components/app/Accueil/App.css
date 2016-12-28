@@ -1,0 +1,19 @@
+.elire-sub-menu {
+    min-height: 20px;
+}
+
+.elire-sub-menu .navbar-default .navbar-nav>li>a {
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.elire-sub-menu > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 0px;
+}
+
+.elire-panel-tab {
+  border-top-width: 0px;
+  margin-bottom: 0px;
+}

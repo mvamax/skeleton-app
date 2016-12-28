@@ -1,0 +1,28 @@
+.sider > .panel-heading {
+    background-color: #ffffff !important;
+    color: black !important;
+    padding: 5px 15px;
+    font-size: 11px;
+}
+
+.sider .panel-body  {
+    padding: 3px 3px;
+}
+
+.sider > .panel-heading h4  {
+  font-size: 14px;
+}
+
+.sider .list-group {
+  margin-bottom:0px;
+}
+
+.sider .list-group-item {
+  padding: 4px 20px;
+  border: 0px;
+  margin: 2px;
+}
+
+.sider .list-group-item a {
+  font-size: 12px;
+}

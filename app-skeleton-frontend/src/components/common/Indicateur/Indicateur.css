@@ -1,0 +1,33 @@
+
+.indicateur-row {
+    margin: 5px 0;
+}
+
+.indicateur {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    color: white;
+    margin: 5px 0;
+    height:125px;
+}
+
+.indicateur span {
+    font-size: 13px;
+}
+
+.count_bottom {
+  text-align: right;
+}
+
+.indicateur .indicateur-titre {
+
+}
+
+.indicateur .indicateur-nombre {
+    font-size: 30px;
+    line-height: 47px;
+    font-weight: 600;
+    text-align: center;
+}

@@ -1,0 +1,10 @@
+.elire-nav-tab a {
+    color: #4477AA;
+    /*font-weight: bold;*/
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.elire-nav-tab  > li > a {
+    padding: 4px 15px;
+}

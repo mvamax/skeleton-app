@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Configuration monitorInterval="60">
+	<Properties>
+		<Property name="log-path">${sys:LOG_PATH:-D:/autre}</Property>
+		<Property name="log-file">${sys:LOG_FILE:-default}</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console-Appender" target="SYSTEM_OUT">
+			<PatternLayout>
+				<pattern>
+					%d{yyyy-MM-dd HH:mm:ss} [%-5level] [%t] %c:%L - %msg%n
+				</pattern>
+				>
+			</PatternLayout>
+		</Console>
+		<File name="App-File-Appender" fileName="${log-path}/${log-file}.log">
+			<PatternLayout>
+				<pattern>
+					%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c{10} - %msg%n
+				</pattern>
+			</PatternLayout>
+		</File>
+	</Appenders>
+	<Loggers>
+
+		<Logger name="fr.insee.elire" level="DEBUG" additivity="false">
+			<AppenderRef ref="Console-Appender" />
+		</Logger>
+		<Root level="INFO">
+			<AppenderRef ref="Console-Appender" />
+		</Root>
+	</Loggers>
+</Configuration>

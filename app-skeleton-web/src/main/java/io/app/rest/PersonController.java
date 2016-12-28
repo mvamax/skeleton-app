@@ -1,0 +1,60 @@
+package io.app.rest;
+
+import io.app.core.domain.Person;
+import io.app.core.join.FieldException;
+import io.app.core.join.JoinDescriptor;
+import io.app.core.join.JoinDescriptorsUtils;
+import io.app.core.service.PersonService;
+import io.app.web.util.PaginationUtil;
+
+import java.net.URISyntaxException;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+@Controller
+public class PersonController {
+
+	private final static String cyclists = "cyclists";
+	
+	private static final Logger log = LoggerFactory.getLogger(PersonController.class);
+	
+	private PersonService personService;
+
+	public PersonController(PersonService personService) {
+		this.personService = personService;
+	}
+	
+	@GetMapping(value = cyclists, produces = MediaType.APPLICATION_JSON_VALUE)
+	public  ResponseEntity<List<Person>> searchPersons (
+			@RequestParam(name = "search", required = false) String search ,
+			@RequestParam(name = "fields", required = false) List<String> fields ,
+			Pageable pageable) throws URISyntaxException, FieldException {
+				
+			log.info(" ------------------------------Recherche de Person---------------------------------------");
+			log.info("Paramètres :");
+			log.info(" * search : " + search);
+			log.info(" * fields : " + fields);
+			log.info("------------------------------------------------------------------------------------------");
+			List<JoinDescriptor> joinFields = JoinDescriptorsUtils.buildJoins(fields, Person.class);
+			Page<Person> page = personService.searchByLastnameAndFirstname(search, joinFields, pageable);
+			HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(
+					page, ServletUriComponentsBuilder.fromCurrentRequest().build().toUri().toString());
+			HttpStatus httpStatus= PaginationUtil.generateHttpStatus(page);
+			return new ResponseEntity<>(page.getContent(), headers, httpStatus);	
+
+	}
+
+	
+}

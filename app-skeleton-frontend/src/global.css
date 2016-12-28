@@ -1,0 +1,48 @@
+body {
+    color:#5C6C7C;
+    font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.471;
+    margin-bottom: 60px;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+.h1, h1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.h2, h2 {
+    font-size: 16px;
+    font-style: italic;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+/* Modification des css bootstrap par défaut */
+
+
+
+.table {
+    margin-bottom: 0px;
+}
+
+.progress {
+    margin-bottom: 0 !important;
+}
+
+.big {
+  font-size: 26px;
+  margin-right: 10px;
+}
