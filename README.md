@@ -28,20 +28,8 @@ Empty for the moment the puropose is to expose batch and point to fitnesse serve
 
 ## Installation
 
-Provide code examples and explanations of how to get the project.
+you can run the web application on web module it will initialize one H2 database
 
-## API Reference
+you can run the batch with running as java job="initializeDataJob", it will print the data from antoher h2 database
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
-
-## Tests
-
-Describe and show how to run the tests with code examples.
-
-## Contributors
-
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
-
-## License
-
-A short snippet describing the license (MIT, Apache, etc.)
+you can run app-skeleton-frontend, with npm install and npm start in the app-skeleton-frontend folder
