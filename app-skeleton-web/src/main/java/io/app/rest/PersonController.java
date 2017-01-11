@@ -55,6 +55,18 @@ public class PersonController {
 			return new ResponseEntity<>(page.getContent(), headers, httpStatus);	
 
 	}
+	
+	@GetMapping(value = "/fetch", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<String> fetch() {
+		String res = personService.fetch(new  StringBuilder());
+		return ResponseEntity.ok().body(res);
+	}
+	
+	@GetMapping(value = "/fetchH", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<String> fetchH() {
+		String res = personService.fetchHibernate(new  StringBuilder());
+		return ResponseEntity.ok().body(res);
+	}
 
 	
 }
