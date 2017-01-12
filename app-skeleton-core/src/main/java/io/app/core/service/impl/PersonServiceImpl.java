@@ -6,11 +6,10 @@ import io.app.core.join.FetchSpecification;
 import io.app.core.join.JoinDescriptor;
 import io.app.core.repository.PersonRepository;
 import io.app.core.service.PersonService;
+import io.app.core.specification.PersonSearchByLastnameAndFirstnameSpecification;
 import io.app.core.specification.PersonSpecification;
 
-import java.io.OutputStream;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.hibernate.ScrollableResults;
 import org.springframework.data.domain.Page;
@@ -38,11 +37,18 @@ public class PersonServiceImpl implements PersonService{
 				)		
 				,pageable);
 	}
+	
+	public Page<Person> searchByLastnameAndFirstnameByContactNotNull(String searchString,Boolean contact,Pageable pageable) {
+		return  personRepository.findAll(
+			PersonSearchByLastnameAndFirstnameSpecification.spec(searchString,searchString, contact)	
+				,pageable);
+	}
 
 	@Transactional(readOnly=true)
-	public String fetch( StringBuilder sb) {
+	public String fetch( String searchString,Pageable pageable, StringBuilder sb) {
 		// TODO Auto-generated method stub
-		personRepository.fetch().forEach(o -> {
+		personRepository.fetch(PersonSearchByLastnameAndFirstnameSpecification.spec(searchString,searchString, null)	
+				,pageable.getSort()).forEach(o -> {
 			sb.append(o.getFirstname().toString());
 		});
 		return sb.toString();

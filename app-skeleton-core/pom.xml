@@ -8,6 +8,10 @@
 	</parent>
 	<artifactId>app-skeleton-core</artifactId>
 
+	<properties>
+		 <hibernate.version>5.1.0.FINAL</hibernate.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -39,16 +39,16 @@ public class PersonController {
 	@GetMapping(value = cyclists, produces = MediaType.APPLICATION_JSON_VALUE)
 	public  ResponseEntity<List<Person>> searchPersons (
 			@RequestParam(name = "search", required = false) String search ,
-			@RequestParam(name = "fields", required = false) List<String> fields ,
+//			@RequestParam(name = "fields", required = false) List<String> fields ,
+			@RequestParam(name = "boolean", required = false, defaultValue="false") Boolean contact ,
 			Pageable pageable) throws URISyntaxException, FieldException {
 				
 			log.info(" ------------------------------Recherche de Person---------------------------------------");
 			log.info("Paramètres :");
 			log.info(" * search : " + search);
-			log.info(" * fields : " + fields);
+			log.info(" * boolean : " + contact);
 			log.info("------------------------------------------------------------------------------------------");
-			List<JoinDescriptor> joinFields = JoinDescriptorsUtils.buildJoins(fields, Person.class);
-			Page<Person> page = personService.searchByLastnameAndFirstname(search, joinFields, pageable);
+			Page<Person> page = personService.searchByLastnameAndFirstnameByContactNotNull(search, contact, pageable);
 			HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(
 					page, ServletUriComponentsBuilder.fromCurrentRequest().build().toUri().toString());
 			HttpStatus httpStatus= PaginationUtil.generateHttpStatus(page);
@@ -57,10 +57,13 @@ public class PersonController {
 	}
 	
 	@GetMapping(value = "/fetch", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<String> fetch() {
-		String res = personService.fetch(new  StringBuilder());
+	public ResponseEntity<String> fetch(
+			@RequestParam(name = "search", required = false) String search ,
+			Pageable pageable) {
+		String res = personService.fetch(search,pageable,new  StringBuilder());
 		return ResponseEntity.ok().body(res);
 	}
+	
 	
 	@GetMapping(value = "/fetchH", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<String> fetchH() {

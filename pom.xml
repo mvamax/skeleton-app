@@ -15,6 +15,7 @@
 		<hikaricp.version>2.5.1</hikaricp.version>
 		<postgres.version>9.4-1200-jdbc41</postgres.version>
 		<springfox.version>2.4.0</springfox.version>
+		 <hibernate.version>5.2.5.Final</hibernate.version>
 	</properties>
 
 	<dependencies>

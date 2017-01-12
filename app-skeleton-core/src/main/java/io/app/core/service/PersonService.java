@@ -14,7 +14,9 @@ public interface PersonService {
 
 	Page<Person> searchByLastnameAndFirstname(String searchString,List<JoinDescriptor> joinFields, Pageable pageable);
 
-	String fetch(StringBuilder sb);
+	Page<Person> searchByLastnameAndFirstnameByContactNotNull(String searchString,Boolean contact,Pageable pageable);
+		
+	String fetch( String searchString,Pageable pageable, StringBuilder sb);
 	
 	String fetchHibernate(StringBuilder sb);
 }
