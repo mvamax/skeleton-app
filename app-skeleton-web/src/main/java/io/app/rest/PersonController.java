@@ -39,6 +39,9 @@ public class PersonController {
 	
 	@SortableUri(allowableValues={"toto"})
 	@GetMapping(value = cyclists, produces = MediaType.APPLICATION_JSON_VALUE)
+//	@Validations(
+//			@Validation( bean="", params={a,b})
+//	)
 	public  ResponseEntity<List<Person>> searchPersons (
 			@RequestParam(name = "search", required = false) String search ,
 //			@RequestParam(name = "fields", required = false) List<String> fields ,
