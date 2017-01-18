@@ -7,7 +7,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @Configuration
@@ -22,8 +22,8 @@ public class JacksonConfiguration implements
 	
 	//Evite de ramener les proxy hibernate
 	@Bean
-	public Hibernate4Module hibernate4Module() {
-		return new Hibernate4Module();
+	public Hibernate5Module hibernate4Module() {
+		return new Hibernate5Module();
 	}
 	
 	//Se charge des serializations ZonedDateTime ou LocalDateTime java 8

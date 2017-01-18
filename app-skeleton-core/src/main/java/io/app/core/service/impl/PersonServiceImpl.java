@@ -10,6 +10,7 @@ import io.app.core.specification.PersonSearchByLastnameAndFirstnameSpecification
 import io.app.core.specification.PersonSpecification;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.hibernate.ScrollableResults;
 import org.springframework.data.domain.Page;
@@ -47,10 +48,13 @@ public class PersonServiceImpl implements PersonService{
 	@Transactional(readOnly=true)
 	public String fetch( String searchString,Pageable pageable, StringBuilder sb) {
 		// TODO Auto-generated method stub
+		final AtomicInteger count = new AtomicInteger(0);
 		personRepository.fetch(PersonSearchByLastnameAndFirstnameSpecification.spec(searchString,searchString, null)	
-				,pageable.getSort()).forEach(o -> {
+				,pageable.getSort()).sequential().forEach(o -> {
 			sb.append(o.getFirstname().toString());
+			count.incrementAndGet();
 		});
+		System.out.println(count.get());
 		return sb.toString();
 	}
 

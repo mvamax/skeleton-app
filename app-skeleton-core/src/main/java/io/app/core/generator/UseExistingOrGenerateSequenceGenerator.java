@@ -9,7 +9,6 @@ import org.hibernate.id.enhanced.SequenceStyleGenerator;
 
 public class UseExistingOrGenerateSequenceGenerator extends SequenceStyleGenerator {
 	
-	@Override
 	public Serializable generate(SessionImplementor session, Object object) throws HibernateException {
 		 Serializable id = session.getEntityPersister(null, object).getClassMetadata().getIdentifier(object, session);
 		 return id != null ? id : super.generate(session, object);

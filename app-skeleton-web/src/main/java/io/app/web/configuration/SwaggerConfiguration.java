@@ -30,7 +30,7 @@ public class SwaggerConfiguration {
 						Date.class)
 						.select()
 //				.apis(RequestHandlerSelectors.any()).paths(PathSelectors.any())
-						.apis(RequestHandlerSelectors.basePackage("fr.insee.elire.rest"))
+						.apis(RequestHandlerSelectors.basePackage("io.app"))
 				
 				.build();
 	}

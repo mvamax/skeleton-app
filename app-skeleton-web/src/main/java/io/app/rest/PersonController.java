@@ -2,13 +2,14 @@ package io.app.rest;
 
 import io.app.core.domain.Person;
 import io.app.core.join.FieldException;
-import io.app.core.join.JoinDescriptor;
-import io.app.core.join.JoinDescriptorsUtils;
 import io.app.core.service.PersonService;
 import io.app.web.util.PaginationUtil;
+import io.app.web.util.SortableUri;
 
 import java.net.URISyntaxException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,12 +37,13 @@ public class PersonController {
 		this.personService = personService;
 	}
 	
+	@SortableUri(allowableValues={"toto"})
 	@GetMapping(value = cyclists, produces = MediaType.APPLICATION_JSON_VALUE)
 	public  ResponseEntity<List<Person>> searchPersons (
 			@RequestParam(name = "search", required = false) String search ,
 //			@RequestParam(name = "fields", required = false) List<String> fields ,
 			@RequestParam(name = "boolean", required = false, defaultValue="false") Boolean contact ,
-			Pageable pageable) throws URISyntaxException, FieldException {
+			@RequestParam  Pageable pageable) throws URISyntaxException, FieldException {
 				
 			log.info(" ------------------------------Recherche de Person---------------------------------------");
 			log.info("Paramètres :");
@@ -59,7 +61,8 @@ public class PersonController {
 	@GetMapping(value = "/fetch", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<String> fetch(
 			@RequestParam(name = "search", required = false) String search ,
-			Pageable pageable) {
+			Pageable pageable,
+			HttpServletResponse response) {
 		String res = personService.fetch(search,pageable,new  StringBuilder());
 		return ResponseEntity.ok().body(res);
 	}

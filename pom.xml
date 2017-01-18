@@ -14,8 +14,8 @@
 		<springboot.version>1.4.2.RELEASE</springboot.version>
 		<hikaricp.version>2.5.1</hikaricp.version>
 		<postgres.version>9.4-1200-jdbc41</postgres.version>
-		<springfox.version>2.4.0</springfox.version>
-		 <hibernate.version>5.2.5.Final</hibernate.version>
+		<springfox.version>2.6.1</springfox.version>
+		<hibernate.version>5.2.5.Final</hibernate.version>
 	</properties>
 
 	<dependencies>
@@ -55,6 +55,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 

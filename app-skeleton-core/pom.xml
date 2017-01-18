@@ -9,7 +9,7 @@
 	<artifactId>app-skeleton-core</artifactId>
 
 	<properties>
-		 <hibernate.version>5.1.0.FINAL</hibernate.version>
+		<hibernate.version>5.2.5.Final</hibernate.version>
 	</properties>
 
 	<dependencies>
@@ -30,11 +30,11 @@
 		<!-- <groupId>org.postgresql</groupId> -->
 		<!-- <artifactId>postgresql</artifactId> -->
 		<!-- </dependency> -->
-		
+
 		<!-- jackson modules et compatibilite java 8 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-hibernate4</artifactId>
+			<artifactId>jackson-datatype-hibernate5</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -71,5 +71,28 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<!-- Import dependency management from Spring Boot -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${springboot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+<!-- 			<dependency> -->
+<!-- 				<groupId>org.hibernate</groupId> -->
+<!-- 				<artifactId>hibernate-core</artifactId> -->
+<!-- 				<version>${hibernate.version}</version> -->
+<!-- 			</dependency> -->
+<!-- 			<dependency> -->
+<!-- 				<groupId>org.hibernate</groupId> -->
+<!-- 				<artifactId>hibernate-entitymanager</artifactId> -->
+<!-- 				<version>${hibernate.version}</version> -->
+<!-- 			</dependency> -->
+		</dependencies>
+	</dependencyManagement>
 
 </project>
