@@ -21,53 +21,62 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class PersonServiceImpl implements PersonService{
 
-	private PersonRepository personRepository;
-	
-	public PersonServiceImpl(PersonRepository personRepository) {
-		this.personRepository=personRepository;
-	}
-	
-	public Page<Person> searchByLastnameAndFirstname(String searchString,List<JoinDescriptor> joinFields,Pageable pageable) {
-		return  personRepository.findAll(
-				where(
-						FetchSpecification.<Person> withEagerFetch(joinFields)
-				).or(  
-						PersonSpecification.lastnameContainsIgnoreCase(searchString)
-				).or(  
-						PersonSpecification.firstnameContainsIgnoreCase(searchString)
-				)		
-				,pageable);
-	}
-	
-	public Page<Person> searchByLastnameAndFirstnameByContactNotNull(String searchString,Boolean contact,Pageable pageable) {
-		return  personRepository.findAll(
-			PersonSearchByLastnameAndFirstnameSpecification.spec(searchString,searchString, contact)	
-				,pageable);
-	}
+    private final PersonRepository personRepository;
 
-	@Transactional(readOnly=true)
-	public String fetch( String searchString,Pageable pageable, StringBuilder sb) {
-		// TODO Auto-generated method stub
-		final AtomicInteger count = new AtomicInteger(0);
-		personRepository.fetch(PersonSearchByLastnameAndFirstnameSpecification.spec(searchString,searchString, null)	
-				,pageable.getSort()).sequential().forEach(o -> {
-			sb.append(o.getFirstname().toString());
-			count.incrementAndGet();
+    public PersonServiceImpl(PersonRepository personRepository) {
+	this.personRepository=personRepository;
+    }
+
+    @Override
+    public Page<Person> searchByLastnameAndFirstname(String searchString,List<JoinDescriptor> joinFields,Pageable pageable) {
+
+	//Cle possible person.firstname
+	//Cle possible person.lastname
+
+	return  personRepository.findAll(
+		where(
+			FetchSpecification.<Person> withEagerFetch(joinFields)
+			).or(
+				PersonSpecification.lastnameContainsIgnoreCase(searchString)
+				).or(
+					PersonSpecification.firstnameContainsIgnoreCase(searchString)
+					)
+					,pageable);
+    }
+
+
+    @Override
+    public Page<Person> searchByLastnameAndFirstnameByContactNotNull(String searchString,Boolean contact,Pageable pageable) {
+	return  personRepository.findAll(
+		PersonSearchByLastnameAndFirstnameSpecification.spec(searchString,searchString, contact)
+		,pageable);
+    }
+
+    @Override
+    @Transactional(readOnly=true)
+    public String fetch( String searchString,Pageable pageable, StringBuilder sb) {
+	// TODO Auto-generated method stub
+	final AtomicInteger count = new AtomicInteger(0);
+	personRepository.fetch(PersonSearchByLastnameAndFirstnameSpecification.spec(searchString,searchString, null)
+		,pageable.getSort()).sequential().forEach(o -> {
+		    sb.append(o.getFirstname().toString());
+		    count.incrementAndGet();
 		});
-		System.out.println(count.get());
-		return sb.toString();
-	}
+	System.out.println(count.get());
+	return sb.toString();
+    }
 
-	@Transactional(readOnly=true)
-	public String fetchHibernate(StringBuilder sb) {
-		ScrollableResults persons = personRepository.fetchHibernate();
-		try{
-		while(persons.next()){
-			sb.append(((Person)persons.get()[0]).getContact()+",");
-		}}finally{
-			persons.close();
-		}
-		return sb.toString();
-	}
+    @Override
+    @Transactional(readOnly=true)
+    public String fetchHibernate(StringBuilder sb) {
+	final ScrollableResults persons = personRepository.fetchHibernate();
+	try{
+	    while(persons.next()){
+		sb.append(((Person)persons.get()[0]).getContact()+",");
+	    }}finally{
+		persons.close();
+	    }
+	return sb.toString();
+    }
 
 }
