@@ -1,6 +1,5 @@
 package io.app.core.domain;
 
-import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,21 +18,21 @@ import org.hibernate.annotations.Parameter;
 import org.hibernate.id.enhanced.SequenceStyleGenerator;
 
 @Entity
-@Table(name = "person")
-public class Person {
+@Table(name = "person2")
+public class Person2 {
 
     @Id
     @GeneratedValue(generator = "IdOrGenerated")
     @GenericGenerator(name = "IdOrGenerated", strategy = "io.app.core.generator.UseExistingOrGenerateSequenceGenerator", parameters = {
-	    @Parameter(name = SequenceStyleGenerator.SEQUENCE_PARAM, value = "person_id_seq"),
+	    @Parameter(name = SequenceStyleGenerator.SEQUENCE_PARAM, value = "person2_id_seq"),
 	    @Parameter(name = SequenceStyleGenerator.INITIAL_PARAM, value = "1000") })
     private Long id;
 
-    @Column(name = "firstname", nullable = false)
-    private String firstname;
+    @Column(name = "firstname2", nullable = false)
+    private String firstname2;
 
-    @Column(name = "lastname", nullable = false)
-    private String lastname;
+    @Column(name = "lastname2", nullable = false)
+    private String lastname2;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contact_id", referencedColumnName = "id", nullable = true)
@@ -41,10 +40,7 @@ public class Person {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
-    private Set<Address> addresses = new HashSet<Address>();
-
-    @Column(name = "birthday", nullable = true)
-    private ZonedDateTime birthday;
+    private final Set<Address> addresses = new HashSet<Address>();
 
     public Long getId() {
 	return id;
@@ -54,20 +50,20 @@ public class Person {
 	this.id = id;
     }
 
-    public String getFirstname() {
-	return firstname;
+    public String getFirstname2() {
+	return firstname2;
     }
 
-    public void setFirstname(String firstname) {
-	this.firstname = firstname;
+    public void setFirstname2(String firstname2) {
+	this.firstname2 = firstname2;
     }
 
-    public String getLastname() {
-	return lastname;
+    public String getLastname2() {
+	return lastname2;
     }
 
-    public void setLastname(String lastname) {
-	this.lastname = lastname;
+    public void setLastname2(String lastname2) {
+	this.lastname2 = lastname2;
     }
 
     public Contact getContact() {
@@ -80,24 +76,6 @@ public class Person {
 
     public Set<Address> getAddresses() {
 	return addresses;
-    }
-
-    public void setAddresses(Set<Address> addresses) {
-	this.addresses = addresses;
-    }
-
-    public ZonedDateTime getBirthday() {
-	return birthday;
-    }
-
-    public void setBirthday(ZonedDateTime birthday) {
-	this.birthday = birthday;
-    }
-
-    @Override
-    public String toString() {
-	return "Person [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", contact=" + contact
-		+ ", addressList=" + addresses + ", birthday=" + birthday + "]";
     }
 
 }
